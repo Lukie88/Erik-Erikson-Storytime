@@ -1,23 +1,207 @@
-body {
-  font-family: system-ui, sans-serif;
-  max-width: 800px;
+:root{
+  --bg:#0b0f19;
+  --panel:#121a2a;
+  --panel2:#0f1625;
+  --text:#e7eefc;
+  --muted:#a7b4d6;
+  --line:rgba(255,255,255,.10);
+  --btn:#1e2a45;
+  --btnHover:#263559;
+  --accent:#7aa2ff;
+  --good:#7dffb2;
+  --bad:#ff7d7d;
+  --shadow: 0 10px 25px rgba(0,0,0,.35);
+  --radius: 18px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(122,162,255,.28), transparent 60%),
+              radial-gradient(900px 500px at 90% 10%, rgba(125,255,178,.12), transparent 55%),
+              var(--bg);
+  color: var(--text);
+}
+
+.app{
+  max-width: 980px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 18px 16px 28px;
 }
 
-.hidden {
-  display: none;
+.topbar{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  justify-content:space-between;
+  padding: 10px 10px 14px;
 }
 
-#choices button {
-  display: block;
-  margin: 0.5rem 0;
+.brand{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.logo{
+  width:46px;
+  height:46px;
+  border-radius: 14px;
+  display:grid;
+  place-items:center;
+  background: linear-gradient(135deg, rgba(122,162,255,.35), rgba(125,255,178,.18));
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+.title{
+  font-weight: 750;
+  font-size: 18px;
+}
+.subtitle{
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 2px;
 }
 
-#stats {
-  margin-top: 1.5rem;
-  border-top: 1px solid #ccc;
-  padding-top: 1rem;
-  font-size: 0.9rem;
+.stats{
+  display:flex;
+  gap:10px;
+}
+.stat{
+  min-width:120px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(18,26,42,.75);
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.stat-label{
+  font-size: 12px;
+  color: var(--muted);
+}
+.stat-value{
+  font-size: 18px;
+  font-weight: 750;
+  margin-top: 3px;
 }
 
+.card{
+  background: rgba(18,26,42,.75);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.h1{
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+.h2{
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+.p{
+  line-height: 1.55;
+  color: var(--text);
+  margin: 10px 0;
+}
+.muted{ color: var(--muted); }
+
+.hr{
+  border:0;
+  border-top:1px solid var(--line);
+  margin: 14px 0;
+}
+
+.choices{
+  display:grid;
+  gap:10px;
+  margin-top: 14px;
+}
+button{
+  font: inherit;
+  color: inherit;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 12px;
+  background: var(--btn);
+  cursor: pointer;
+  transition: transform .05s ease, background .15s ease, border-color .15s ease;
+}
+button:hover{
+  background: var(--btnHover);
+}
+button:active{
+  transform: translateY(1px);
+}
+button.primary{
+  background: linear-gradient(135deg, rgba(122,162,255,.35), rgba(122,162,255,.12));
+  border-color: rgba(122,162,255,.35);
+}
+button.ghost{
+  background: transparent;
+}
+button.small{
+  padding: 9px 10px;
+  border-radius: 12px;
+}
+
+.badgeRow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top: 6px;
+}
+.badge{
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border:1px solid var(--line);
+  background: rgba(15,22,37,.7);
+  color: var(--muted);
+}
+
+.delta{
+  font-weight: 700;
+}
+.delta.good{ color: var(--good); }
+.delta.bad{ color: var(--bad); }
+
+.outcomeBox{
+  margin-top: 14px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border:1px solid var(--line);
+  background: rgba(15,22,37,.8);
+}
+
+.sliderWrap{
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  border:1px solid var(--line);
+  background: rgba(15,22,37,.8);
+}
+.sliderLabels{
+  display:flex;
+  justify-content:space-between;
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-bottom: 8px;
+}
+input[type="range"]{
+  width: 100%;
+}
+
+.footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top: 12px;
+  padding: 0 6px;
+}
