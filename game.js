@@ -34,6 +34,28 @@ function applyDelta(d) {
   setStats();
 }
 
+function fmtDelta(val) {
+  if (val === 0 || val == null) return "0";
+  return val > 0 ? `+${val}` : `${val}`;
+}
+
+function renderBadges(delta) {
+  const items = [];
+  if (!delta) return "";
+  const map = [
+    ["Trust", delta.trust ?? 0],
+    ["Self Esteem", delta.self ?? 0],
+    ["Relationships", delta.rel ?? 0],
+  ];
+  for (const [name, v] of map) {
+    if (v === 0) continue;
+    items.push(
+      `<span class="badge"><span class="delta ${v > 0 ? "good" : "bad"}">${name} ${fmtDelta(v)}</span></span>`
+    );
+  }
+  return items.length ? `<div class="badges">${items.join("")}</div>` : "";
+}
+
 function escapeHtml(str) {
   return String(str)
     .replaceAll("&", "&amp;")
@@ -227,8 +249,6 @@ const script = {
   s5_intimacy: {
     stage: { num: 5, name: "Intimacy vs Isolation" },
     title: "Conflict: Balancing work and close relationships",
-    image: "images/stage5.jpg",
-    tint: "var(--gradient5)",
     paragraphs: [
       "As a young adult, Leo enters the workforce and begins forming romantic relationships. He only has so many hours in the day—how should he balance work with nurturing close bonds? Move the slider to choose where he puts his energy."
     ],
@@ -238,8 +258,6 @@ const script = {
   s6_generativity: {
     stage: { num: 6, name: "Generativity vs Stagnation" },
     title: "Conflict: Mid-life direction",
-    image: "images/stage6.jpg",
-    tint: "var(--gradient6)",
     paragraphs: [
       "By mid-life, Leo reflects on what he has built so far. Has he created meaning for himself and others, or has he become stuck? Prior identity choices influence whether a mid-life crisis will emerge."
     ],
@@ -249,23 +267,13 @@ const script = {
   s7_integrity: {
     stage: { num: 7, name: "Integrity vs Despair" },
     title: "Final Stage: Later Life Reflection",
-    image: "images/stage7.jpg",
-    tint: "var(--gradient7)",
     paragraphs: [],
   },
 };
 
-function renderStageImage(image, tint) {
-  const tintStyle = tint ? `linear-gradient(135deg, ${tint}, transparent)` : "";
-  return `<div class="stageImage" style="background-image: ${tintStyle ? `${tintStyle}, ` : ""}url('${escapeHtml(
-    image
-  )}');"></div>`;
-}
-
 function renderIntro() {
   const intro = script.intro;
   ui.screen.innerHTML = `
-    ${renderStageImage(intro.image, intro.tint)}
     <div class="h1">${escapeHtml(intro.title)}</div>
     <div class="h2">${escapeHtml(intro.subtitle)}</div>
     ${intro.paragraphs
@@ -287,12 +295,12 @@ function renderChoiceNode(node) {
         <button class="btn" data-key="${ch.key}">
           <div class="h2">${escapeHtml(ch.label)}</div>
           <div class="p">${escapeHtml(ch.outcome)}</div>
+          ${renderBadges(ch.delta)}
         </button>`
     )
     .join("");
 
   ui.screen.innerHTML = `
-    ${renderStageImage(node.image, node.tint)}
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
     ${paragraphs}
@@ -309,6 +317,7 @@ function renderChoiceNode(node) {
         <div class="outcomeBox">
           <div class="h2">Outcome</div>
           <div class="p">${escapeHtml(choice.outcome)}</div>
+          ${renderBadges(choice.delta)}
         </div>
         <button class="btn primary" id="continueBtn" type="button">Continue</button>
       `;
@@ -321,7 +330,6 @@ function renderChoiceNode(node) {
 function renderIntimacySlider() {
   const node = script.s5_intimacy;
   ui.screen.innerHTML = `
-    ${renderStageImage(node.image, node.tint)}
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
     ${node.paragraphs.map((p) => `<p class="p">${escapeHtml(p)}</p>`).join("")}
@@ -350,6 +358,7 @@ function renderIntimacySlider() {
       <div class="outcomeBox" style="margin-top:12px;">
         <div class="h2">Outcome</div>
         <div class="p">${escapeHtml(outcomeText)}</div>
+        ${renderBadges(delta)}
       </div>
       <button class="btn primary" id="continueAfterSlider" type="button" style="margin-top:12px;">Continue</button>
     `;
@@ -391,13 +400,13 @@ function renderGenerativity() {
   const node = script.s6_generativity;
   const outcome = ensureGenerativityOutcome();
   ui.screen.innerHTML = `
-    ${renderStageImage(node.image, node.tint)}
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
     ${node.paragraphs.map((p) => `<p class="p">${escapeHtml(p)}</p>`).join("")}
     <div class="outcomeBox">
       <div class="h2">Outcome</div>
       <div class="p">${escapeHtml(outcome.text)}</div>
+      ${renderBadges(outcome.delta)}
     </div>
     <button class="btn primary" id="toIntegrity" type="button" style="margin-top:12px;">Continue to later life</button>
   `;
@@ -421,7 +430,6 @@ function renderEnding() {
   }
 
   ui.screen.innerHTML = `
-    ${renderStageImage(node.image, node.tint)}
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
     <p class="p">${escapeHtml(text)}</p>
