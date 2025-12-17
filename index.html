@@ -2,43 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Life of Leo </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Erik Erikson Storytime — Life of Leo</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main id="game">
-    <h1>Life of Leo</h1>
+  <main class="app" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">LEO</div>
+        <div>
+          <div class="title">Erik Erikson Storytime</div>
+          <div class="subtitle">Life of Leo — 8 Stages, Your Choices</div>
+        </div>
+      </div>
 
-    <section id="stage-header">
-      <h2 id="stage-title"></h2>
-      <p id="stage-age"></p>
+      <div class="stats" aria-label="Internal traits">
+        <div class="stat">
+          <div class="stat-label">Trust</div>
+          <div class="stat-value" id="trustVal">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Self-Esteem</div>
+          <div class="stat-value" id="selfVal">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Relationships</div>
+          <div class="stat-value" id="relVal">0</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="card" id="screen">
+      <!-- rendered by game.js -->
     </section>
 
-    <section id="scene">
-      <p id="scene-text"></p>
-    </section>
-
-    <section id="choices"></section>
-
-    <section id="outcome" class="hidden">
-      <p id="outcome-text"></p>
-      <button id="next-btn">Next Stage</button>
-    </section>
-
-    <section id="stats">
-      <h3>Leo's Inner Stats</h3>
-      <p>Trust: <span id="stat-trust">0</span></p>
-      <p>Self-Esteem: <span id="stat-self">0</span></p>
-      <p>Relationships: <span id="stat-rel">0</span></p>
-    </section>
+    <footer class="footer">
+      <div id="progressText" class="muted"></div>
+      <button class="ghost" id="restartBtn" type="button" title="Restart the game">Restart</button>
+    </footer>
   </main>
-
-  <section id="summary" class="hidden">
-    <h2>Leo's Life Summary</h2>
-    <p id="summary-text"></p>
-  </section>
 
   <script src="game.js"></script>
 </body>
 </html>
-
