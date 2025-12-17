@@ -7,39 +7,65 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="app" id="app">
+  <div class="bg"></div>
+
+  <main class="app">
     <header class="topbar">
       <div class="brand">
         <div class="logo">LEO</div>
-        <div>
+        <div class="brandText">
           <div class="title">Erik Erikson Storytime</div>
-          <div class="subtitle">Life of Leo — 8 Stages, Your Choices</div>
+          <div class="subtitle">An interactive life story — your choices shape Leo</div>
         </div>
       </div>
 
       <div class="stats" aria-label="Internal traits">
         <div class="stat">
-          <div class="stat-label">Trust</div>
-          <div class="stat-value" id="trustVal">0</div>
+          <div class="statLabel">Trust</div>
+          <div class="statVal" id="trustVal">0</div>
         </div>
         <div class="stat">
-          <div class="stat-label">Self-Esteem</div>
-          <div class="stat-value" id="selfVal">0</div>
+          <div class="statLabel">Self-Esteem</div>
+          <div class="statVal" id="selfVal">0</div>
         </div>
         <div class="stat">
-          <div class="stat-label">Relationships</div>
-          <div class="stat-value" id="relVal">0</div>
+          <div class="statLabel">Relationships</div>
+          <div class="statVal" id="relVal">0</div>
         </div>
       </div>
     </header>
 
-    <section class="card" id="screen">
-      <!-- rendered by game.js -->
-    </section>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sideHeader">
+          <div class="sideTitle">Stages</div>
+          <div class="sideHint" id="sideHint">Choose to begin</div>
+        </div>
+        <ol class="stageList" id="stageList"></ol>
+
+        <div class="sideFooter">
+          <div class="progressWrap">
+            <div class="progressTop">
+              <span class="muted" id="progressText">Intro</span>
+              <span class="muted" id="progressPct">0%</span>
+            </div>
+            <div class="progressBar" aria-hidden="true">
+              <div class="progressFill" id="progressFill" style="width:0%"></div>
+            </div>
+          </div>
+
+          <button class="btn ghost" id="restartBtn" type="button">Restart</button>
+        </div>
+      </aside>
+
+      <section class="card" id="screen" aria-live="polite">
+        <!-- rendered by game.js -->
+      </section>
+    </div>
 
     <footer class="footer">
-      <div id="progressText" class="muted"></div>
-      <button class="ghost" id="restartBtn" type="button" title="Restart the game">Restart</button>
+      <div class="muted">Tip: your ending depends on cumulative choices, not one decision.</div>
+      <div class="muted">Cloudflare Pages / GitHub Pages friendly (static HTML/CSS/JS)</div>
     </footer>
   </main>
 
