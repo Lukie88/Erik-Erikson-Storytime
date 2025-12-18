@@ -48,7 +48,7 @@ const script = {
   intro: {
     title: "Introduction",
     subtitle: "Read, then begin.",
-    image: "images/intro.jpg",
+    image: "images/intro.png",
     tint: "var(--gradientIntro)",
     paragraphs: [
       "In this interactive game, you will be controlling the life of “Leo” and his journey from womb to tomb. Through a series of choices, you are free to make your own decisions on how you want him to lead his life. Built upon Freud’s psychosexual stages, Erikson’s eight psychological stages of development demonstrate how childhood influences, experiences and social dynamics influence our choices and shape individuals' personality, relationships and sense of meaning in life.",
@@ -122,7 +122,7 @@ const script = {
   s2_c2: {
     stage: { num: 2, name: "Stage 2: Autonomy vs Shame/Doubt" },
     title: "Conflict 2: Toilet Training",
-    image: "images/stage2.jpg",
+    image: "images/stage2.png",
     tint: "var(--gradient2)",
     paragraphs: [
       "How does baby Leo learn in this stage? Is he encouraged to try new things by himself or is he spoiled and constantly discouraged from independent actions? In this stage, how you help Leo bring out confidence or further the self doubt."
@@ -152,11 +152,12 @@ const script = {
     ],
   },
 
-  // Initiative vs Guilt
+  // Initiative vs Guilt 
+  //stage 3
   s3_initiative: {
     stage: { num: 3, name: "Stage 3: Initiative vs Guilt" },
     title: "Conflict 3: Developing Originality",
-    image: "images/stage3.jpg",
+    image: "images/stage3.png",
     tint: "var(--gradient3)",
     paragraphs: [
       "Leo begins preschool now and is very inquisitive. His imagination begins to flourish, and he constantly asks questions many are unable to answer. You must now make the choice on whether Leo is comfortable expressing his ideas and creativity or whether he feels humiliated for wanting to do so.",
@@ -194,7 +195,7 @@ const script = {
   s3_industry: {
     stage: { num: 4, name: "Stage 4: Industry vs Inferiority" },
     title: "Conflict 4: Developing Self-belief",
-    image: "images/stage3.jpg",
+    image: "images/stage4.png",
     tint: "var(--gradient3)",
     paragraphs: [
       "As Leo progresses through his education, he can independently plan activities, ask questions, and explore whatever he pleases. Leo just completed pre-school and now attends elementary school. However, his elementary school is very competitive and has a cut-throat culture. Instead of spending time doing the things he enjoys, he constantly reviews math homework and write long essays. Dissatisfied with how his current school doesn’t suit his interests, you must decide on a solution that you believe can help develop Leo more."
@@ -221,7 +222,7 @@ const script = {
   s4_identity: {
     stage: { num: 5, name: "Stage 5: Identity vs Role Confusion" },
     title: "Conflict 5: How does Leo respond to his identity struggle?",
-    image: "images/stage4.jpg",
+    image: "images/stage5.png",
     tint: "var(--gradient4)",
     paragraphs: [
       "Leo is now an adolescent, during this life changing period, he embarks on his journey of self-discovery. He begins questioning who he is, what he is a part of, and what values matter to him. Although he is intelligent, he lacks direction and motivation. He frequently changes schools, gets into conflicts with peers, and moves between different social groups without determining a strong sense of belonging."
@@ -264,6 +265,7 @@ const script = {
   s5_intimacy: {
     stage: { num: 6, name: "Stage 6: Intimacy vs Isolation" },
     title: "Conflict: Balancing work and close relationships",
+    image: "images/stage6.png",
     paragraphs: [
       "As a young adult, Leo enters the workforce and begins forming romantic relationships. He only has so many hours in the day; how should he balance work with nurturing close bonds? Move the slider to choose where he puts his energy."
     ],
@@ -273,6 +275,8 @@ const script = {
   s6_generativity: {
     stage: { num: 7, name: "Stage 7: Generativity vs Stagnation" },
     title: "Conflict: Mid-life Crisis?",
+        image: "images/stage7.png",
+
     paragraphs: [
       "Leo enters his mid-life stage with two chilren. He begins to reflect on what he has built so far. He asks himself whether he has assisted others, whether he feels emotionally connected, and if his actions support the next generation. His ability to find meaning in this stage heavily depended upon his previous choices in relationships, identity, and confidence earlier in his life. "
     ],
@@ -282,6 +286,8 @@ const script = {
   s7_integrity: {
     stage: { num: 8, name: "Stage 8: Integrity vs Despair" },
     title: "Final Stage: Later Life Reflection",
+        image: "images/stage8.png",
+
     paragraphs: [],
   },
 };
