@@ -47,6 +47,7 @@ function escapeHtml(str) {
 const script = {
   intro: {
     title: "Introduction",
+    subtitle: "Begin!",
     image: "images/intro.png",
     tint: "var(--gradientIntro)",
     paragraphs: [
@@ -167,7 +168,7 @@ const script = {
         key: "A",
         label: "Choice A: Leo is encouraged to freely express his thoughts",
         outcome:
-          "He is encouraged to exercise his imagination to the fullest capacity; he shares stories, and acts out scenes with other children without fear of judgement. He learns that expressing ideas is valuable and acceptable, and is willing to take the initiative when communicating with others.",
+          "He is encouraged to exercise his imagination to the fullest capacity; he shares stories, and acts out scenes with other children without fear of judgement. He learns that expressing ideas are valuable and acceptable, and is willing to take the initiative when communicating with others.",
         delta: { self: 2, rel: 2 },
         next: "s3_industry",
       },
@@ -250,7 +251,7 @@ const script = {
       {
         key: "C",
         label: "Choice C: Withdraw and Isolate",
-        outcome: "Leo becomes isolated. He refuses to communicate with his peers, teachers, and family. In class, he sits in the back corner, ignoring everyone and keeping to himself. Once school ends, he rushes home and locks himself in his room, disassociating from society. Because of this behavior, he avoids exploration, thus becoming estranged from others. Without the initiative to study topics that interest him, his sense of identity becomes uncertain.",
+        outcome: "Leo becomes isolated. He refuses to communicate with his peers, teachers, and family. In class, he sits in the back corner, ignoring everyone and keeping to himself. Once school ends, he rushes home and locks himself in his room, disassociating from society. Because of this behavior, he avoids exploration, thus becoming estranged from others. Without the initiative to find and study topics that interest him, his sense of identity becomes uncertain.",
         delta: { self: -2, rel: -2, trust: -1 },
         next: "s5_intimacy",
         onPick: () => {
