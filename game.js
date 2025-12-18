@@ -70,6 +70,8 @@ const script = {
   intro: {
     title: "Introduction",
     subtitle: "Read, then begin.",
+    image: "images/intro.jpg",
+    tint: "var(--gradientIntro)",
     paragraphs: [
       "In this interactive game, you will be controlling the life of “Leo” and his journey from womb to tomb. Through a series of choices, you are free to make your own decisions on how you want him to lead his life. Built upon Freud’s psychosexual stages, Erikson’s eight psychological stages of development demonstrate how childhood influences, experiences and social dynamics influence our choices and shape individuals' personality, relationships and sense of meaning in life.",
       "In this game, you will be able to make your own choices in controlling Baby Leo. There are 8 main life stages, each based on Erikson’s theory. In each stage, there are a couple conflicts to face with 2-3 choices per conflict. The choices you pick affect three internal traits: trust, self-esteem, and relationships. The outcome of Leo’s life is dependent on cumulative choices, not a single decision.",
@@ -82,6 +84,8 @@ const script = {
   s1_c1: {
     stage: { num: 1, name: "Stage 1: Trust vs Mistrust (Infancy)" },
     title: "Conflict 1: How will Leo be cared for most of his time?",
+    image: "images/stage1.jpg",
+    tint: "var(--gradient1)",
     paragraphs: [
       "Baby Leo is born on June 19, 2025. His mother and father both have demanding jobs as bankers, which leaves them with little time at home. Rich in money but poor in time, they have little time to care for their child. They care for him, but they must decide how his day-to-day care will work during his first year. To combat that issue, the parents are considering three choices: the mother can retire and raise baby Leo, a caregiver is hired to raise the child, or the parents try to balance work and family."
     ],
@@ -113,6 +117,8 @@ const script = {
   s1_caregiver: {
     stage: { num: 1, name: "Stage 1: Trust vs Mistrust (Infancy)" },
     title: "Choice B- Hire a caregiver",
+    image: "images/stage1.jpg",
+    tint: "var(--gradient1)",
     paragraphs: [
       "Baby Leo’s parents are so passionate about their jobs they feel it is more beneficial for his needs to be met by someone else most of the day. However, the quality of care he receives depends on who you are hired."
     ],
@@ -138,6 +144,8 @@ const script = {
   s2_c2: {
     stage: { num: 2, name: "Stage 2: Autonomy vs Shame/Doubt" },
     title: "Conflict 2: Toilet Training",
+    image: "images/stage2.jpg",
+    tint: "var(--gradient2)",
     paragraphs: [
       "How does baby Leo learn in this stage? Is he encouraged to try new things by himself or is he spoiled and constantly discouraged from independent actions? In this stage, how you help Leo learn determines whether he has confidence or whether he doubts himself."
     ],
@@ -171,6 +179,8 @@ const script = {
   s3_industry: {
     stage: { num: 3, name: "Industry vs Inferiority" },
     title: "Conflict 3:",
+    image: "images/stage3.jpg",
+    tint: "var(--gradient3)",
     paragraphs: [
       "As Leo progresses through his education, he can independently plan activities, ask questions, and explore whatever he pleases. Leo just completed pre-school and now attends elementary school. However, his elementary school is very competitive and has a cut-throat culture. Instead of spending time doing things he enjoys such as reading and sports, he constantly must review math homework and write long essays. Dissatisfied with how his current school doesn’t suit his interests and how no adults respond to his initiatives, you must decide on a solution that you believe can help develop Leo more."
     ],
@@ -196,6 +206,8 @@ const script = {
   s4_identity: {
     stage: { num: 4, name: "Identity vs Role Confusion" },
     title: "Conflict: How does Leo respond to his identity struggle?",
+    image: "images/stage4.jpg",
+    tint: "var(--gradient4)",
     paragraphs: [
       "Leo is now an adolescent, during this life changing period, he embarks on his journey of self-discovery. He begins questioning who he is, what he is a part of, and what values matter to him. Although he is intelligent, he lacks direction and motivation. He frequently changes schools, gets into conflicts with peers, and moves between different social groups without determining a strong sense of belonging."
     ],

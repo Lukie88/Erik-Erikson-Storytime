@@ -138,26 +138,6 @@ body{
   margin: 14px 0;
 }
 
-.badges{
-  display:flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-.badge{
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(10,14,26,.55);
-  color: var(--muted);
-}
-.delta{
-  font-weight: 900;
-}
-.delta.good{ color: var(--good); }
-.delta.bad{ color: var(--bad); }
-
 .choiceGrid{
   display:grid;
   gap: 10px;
