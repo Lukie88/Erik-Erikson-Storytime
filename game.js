@@ -362,9 +362,11 @@ function renderChoiceNode(node) {
 
 function renderIntimacySlider() {
   const node = script.s5_intimacy;
+    const imageHtml = renderSceneImage(node);
   ui.screen.innerHTML = `
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
+        ${imageHtml}
     ${node.paragraphs.map((p) => `<p class="p">${escapeHtml(p)}</p>`).join("")}
     <div class="sliderWrap">
       <div class="sliderLabels"><span>All Work</span><span>Balance</span><span>All Relationships</span></div>
@@ -440,9 +442,11 @@ function ensureGenerativityOutcome() {
 function renderGenerativity() {
   const node = script.s6_generativity;
   const outcome = ensureGenerativityOutcome();
+    const imageHtml = renderSceneImage(node);
   ui.screen.innerHTML = `
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
+        ${imageHtml}
     ${node.paragraphs.map((p) => `<p class="p">${escapeHtml(p)}</p>`).join("")}
     <button class="btn primary" id="revealOutcome" type="button" style="margin-top:12px;">See Leo's reflection</button>
     <div id="genOutcomeSpot"></div>
@@ -464,6 +468,7 @@ function renderGenerativity() {
 
 function renderEnding() {
   const node = script.s7_integrity;
+    const imageHtml = renderSceneImage(node);
   const total = state.trust + state.self + state.rel;
   let verdict = "mixed";
   let verdictLabel = "Mixed Feelings";
@@ -484,6 +489,7 @@ function renderEnding() {
   ui.screen.innerHTML = `
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
+        ${imageHtml}
     <div class="endingLabel ${escapeHtml(verdict)}">${escapeHtml(verdictLabel)}</div>
     <p class="p">${escapeHtml(text)}</p>
     <div class="outcomeBox">
