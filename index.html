@@ -15,7 +15,6 @@
         <div class="logo">LEO</div>
         <div class="brandText">
           <div class="title">Erik Erikson Storytime</div>
-          <div class="subtitle">An interactive life story — your choices shape Leo</div>
         </div>
       </div>
 
@@ -32,41 +31,13 @@
           <div class="statLabel">Relationships</div>
           <div class="statVal" id="relVal">0</div>
         </div>
+        <button class="btn soft" id="restartBtn" type="button">Restart</button>
       </div>
     </header>
 
-    <div class="layout">
-      <aside class="sidebar">
-        <div class="sideHeader">
-          <div class="sideTitle">Stages</div>
-          <div class="sideHint" id="sideHint">Choose to begin</div>
-        </div>
-        <ol class="stageList" id="stageList"></ol>
-
-        <div class="sideFooter">
-          <div class="progressWrap">
-            <div class="progressTop">
-              <span class="muted" id="progressText">Intro</span>
-              <span class="muted" id="progressPct">0%</span>
-            </div>
-            <div class="progressBar" aria-hidden="true">
-              <div class="progressFill" id="progressFill" style="width:0%"></div>
-            </div>
-          </div>
-
-          <button class="btn ghost" id="restartBtn" type="button">Restart</button>
-        </div>
-      </aside>
-
-      <section class="card" id="screen" aria-live="polite">
-        <!-- rendered by game.js -->
-      </section>
-    </div>
-
-    <footer class="footer">
-      <div class="muted">Tip: your ending depends on cumulative choices, not one decision.</div>
-      <div class="muted">Cloudflare Pages / GitHub Pages friendly (static HTML/CSS/JS)</div>
-    </footer>
+    <section class="card" id="screen" aria-live="polite">
+      <!-- rendered by game.js -->
+    </section>
   </main>
 
   <script src="game.js"></script>
