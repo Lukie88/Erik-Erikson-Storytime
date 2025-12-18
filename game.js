@@ -275,7 +275,9 @@ const script = {
     stage: { num: 7, name: "Stage 7: Generativity vs Stagnation" },
     title: "Conflict: Mid-life direction",
     paragraphs: [
-      "By mid-life, Leo reflects on what he has built so far. Has he created meaning for himself and others, or has he become stuck? Prior identity choices influence whether a mid-life crisis will emerge."
+      "By mid-life, Leo reflects on what he has built so far. Has he created meaning for himself and others, or has he become stuck? Prior identity choices influence whether a mid-life crisis will emerge.",
+      "One evening, a younger colleague named Mina asks Leo for guidance on a community project. Her curiosity pulls Leo back to the values he once explored. Will he pour into the next generation, or retreat into the comfort of his routines?",
+      "Choose how Leo responds to turn reflection into action."
     ],
   },
 
@@ -409,13 +411,68 @@ function ensureGenerativityOutcome() {
 function renderGenerativity() {
   const node = script.s6_generativity;
   const outcome = ensureGenerativityOutcome();
+  const activities = [
+    {
+      key: "mentor",
+      label: "Mentor Mina and co-design a workshop",
+      text:
+        "Leo invites Mina to shadow his projects and co-designs a Saturday workshop for teens. Passing on his lessons rekindles his sense of purpose and connects him to younger dreamers.",
+      delta: { trust: 1, rel: 2, self: 1 },
+    },
+    {
+      key: "legacy",
+      label: "Write a small legacy journal for family",
+      text:
+        "Leo spends evenings crafting a journal of stories, mistakes, and rituals. Sharing it with family deepens their conversations and reminds him that quiet contributions still matter.",
+      delta: { trust: 1, rel: 1, self: 1 },
+    },
+    {
+      key: "withdraw",
+      label: "Stay comfortable and keep work to himself",
+      text:
+        "Leo thanks Mina for asking but decides he is too busy. He keeps his projects private, doubling down on routines that feel safe yet slowly isolate him.",
+      delta: { rel: -2, self: -1 },
+    },
+  ];
   ui.screen.innerHTML = `
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
     ${node.paragraphs.map((p) => `<p class="p">${escapeHtml(p)}</p>`).join("")}
-    <button class="btn primary" id="revealOutcome" type="button" style="margin-top:12px;">See Leo's reflection</button>
+    <div class="choiceGrid" id="genChoiceGrid">
+      ${activities
+        .map(
+          (act) => `
+            <button class="btn" data-key="${escapeHtml(act.key)}">
+              <div class="h2">${escapeHtml(act.label)}</div>
+              <div class="p" style="margin-top:6px;">${escapeHtml(act.text)}</div>
+            </button>`
+        )
+        .join("")}
+    </div>
+    <div id="genChoiceOutcome"></div>
+    <button class="btn primary" id="revealOutcome" type="button" style="margin-top:12px;" disabled>See Leo's reflection</button>
     <div id="genOutcomeSpot"></div>
   `;
+  let chosen = false;
+  const grid = $("genChoiceGrid");
+  grid.querySelectorAll("button").forEach((btn, idx) => {
+    btn.addEventListener("click", () => {
+      if (chosen) return;
+      chosen = true;
+      const act = activities[idx];
+      $("genChoiceOutcome").innerHTML = `
+        <div class="outcomeBox" style="margin-top:12px;">
+          <div class="h2">Leo's move</div>
+          <div class="p">${escapeHtml(act.text)}</div>
+        </div>
+        <p class="p" style="margin-top:6px;">This choice nudges his balance between contribution and stagnation.</p>
+      `;
+      grid.querySelectorAll("button").forEach((b) => (b.disabled = true));
+      $("revealOutcome").disabled = false;
+      applyDelta(act.delta);
+    });
+  });
+
   $("revealOutcome").addEventListener("click", () => {
     const spot = $("genOutcomeSpot");
     spot.innerHTML = `
