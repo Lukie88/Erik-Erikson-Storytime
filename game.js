@@ -62,7 +62,7 @@ const script = {
   s1_c1: {
     stage: { num: 1, name: "Stage 1: Trust vs Mistrust (Infancy)" },
     title: "Conflict 1: How will Leo be cared for most of his time?",
-    image: "images/stage1.jpg",
+    image: "images/stage1.png",
     tint: "var(--gradient1)",
     paragraphs: [
       "Baby Leo is born on June 19, 2025. His mother and father both have demanding jobs as bankers, which leaves them with little time at home. Rich in money but poor in time, they have little time to care for their child. They care for him, but they must decide how his day-to-day care will work during his first year. To combat that issue, the parents are considering three choices: the mother can retire and raise baby Leo, a caregiver is hired to raise the child, or the parents try to balance work and family."
