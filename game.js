@@ -292,7 +292,7 @@ function renderSceneImage(node) {
   const alt = `${altSource} illustration`;
   return `
     <figure class="sceneImage" style="--sceneTint:${escapeHtml(tint)};">
-      <img src="${escapeHtml(node.image)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async"
+      <img src="${escapeHtml(node.image)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async"width="413" height="604"
         onerror="this.closest('.sceneImage')?.classList.add('is-hidden');" />
     </figure>
   `;
