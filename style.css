@@ -1,28 +1,19 @@
 :root{
-  --bg0:#f5f7fb;
-  --bg1:#eef3f8;
-  --panel: rgba(255,255,255,.92);
-  --panelSolid:#ffffff;
-  --line: rgba(17,37,64,.10);
-  --text:#182433;
-  --muted:#4b647a;
-  --accent:#6d9df4;
-  --accent2:#f4a6c0;
-  --accent3:#86d4b8;
-  --warn:#f5c776;
-  --good:#86d4b8;
-  --bad:#f29aa0;
+  --bg0:#0b1024;
+  --bg1:#0f1433;
+  --panel: rgba(22,28,56,.9);
+  --panelSolid:#151b36;
+  --line: rgba(255,255,255,.16);
+  --text:#f3f7ff;
+  --muted:#bcc7eb;
+  --accent:#8ec5ff;
+  --accent2:#ff9bd3;
+  --accent3:#8ef3c5;
+  --warn:#ffd26f;
+  --good:#8ef3c5;
+  --bad:#ff8d8d;
 
-  --gradientIntro: rgba(109,157,244,.20);
-  --gradient1: rgba(244,185,144,.28);
-  --gradient2: rgba(134,212,184,.24);
-  --gradient3: rgba(144,188,244,.22);
-  --gradient4: rgba(244,166,192,.22);
-  --gradient5: rgba(244,214,144,.24);
-  --gradient6: rgba(196,203,255,.22);
-  --gradient7: rgba(144,188,244,.18);
-
-  --shadow: 0 10px 34px rgba(33,56,87,.10);
+  --shadow: 0 14px 40px rgba(9,12,24,.55);
   --radius: 18px;
   --radius2: 14px;
   --pad: 16px;
@@ -35,9 +26,9 @@ body{
   margin:0;
   font-family: var(--font);
   color: var(--text);
-  background: radial-gradient(1200px 720px at 18% -10%, rgba(109,157,244,.18), transparent 60%),
-              radial-gradient(980px 620px at 82% 6%, rgba(244,166,192,.14), transparent 55%),
-              radial-gradient(940px 540px at 44% 16%, rgba(134,212,184,.16), transparent 45%),
+  background: radial-gradient(1400px 720px at 18% -10%, rgba(142,197,255,.32), transparent 60%),
+              radial-gradient(1200px 620px at 88% 4%, rgba(255,155,211,.22), transparent 55%),
+              radial-gradient(900px 540px at 40% 10%, rgba(142,243,197,.18), transparent 45%),
               linear-gradient(180deg, var(--bg0), var(--bg1));
 }
 
@@ -100,7 +91,7 @@ body{
   min-width: 130px;
   padding: 10px 12px;
   border-radius: var(--radius2);
-  background: linear-gradient(135deg, rgba(109,157,244,.12), rgba(134,212,184,.12));
+  background: linear-gradient(135deg, rgba(142,197,255,.18), rgba(142,243,197,.12));
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
@@ -113,33 +104,14 @@ body{
   font-size: 18px;
   font-weight: 850;
 }
-.statVal.statFlash{
-  background: linear-gradient(135deg, rgba(109,157,244,.16), rgba(134,212,184,.14));
-  padding: 4px 8px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(33,56,87,.16);
-}
 
 .card{
   border-radius: var(--radius);
-  background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.90));
-  border: 1px solid rgba(17,37,64,.10);
+  background: linear-gradient(145deg, rgba(22,28,56,.92), rgba(255,155,211,.10));
+  border: 1px solid rgba(255,255,255,.14);
   box-shadow: var(--shadow);
-  padding: 22px;
+  padding: 20px;
   min-height: 520px;
-  overflow: hidden;
-}
-
-.stageImage{
-  width: 100%;
-  aspect-ratio: 16 / 7;
-  border-radius: 14px;
-  margin-bottom: 14px;
-  background-color: rgba(255,255,255,.32);
-  background-size: cover;
-  background-position: center;
-  border: 1px solid var(--line);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.6), 0 12px 30px rgba(33,56,87,.10);
 }
 
 .h1{
@@ -177,7 +149,7 @@ body{
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 12px 12px;
-  background: rgba(255,255,255,.65);
+  background: rgba(30,42,69,.65);
   cursor:pointer;
   transition: transform .06s ease, background .15s ease, border-color .15s ease;
   text-align:left;
@@ -185,15 +157,15 @@ body{
 .btn:hover{ background: rgba(255,255,255,.9); border-color: rgba(17,37,64,.18); }
 .btn:active{ transform: translateY(1px); }
 .btn.primary{
-  background: linear-gradient(135deg, rgba(109,157,244,.32), rgba(244,166,192,.28));
-  border-color: rgba(109,157,244,.45);
+  background: linear-gradient(135deg, rgba(142,197,255,.45), rgba(255,155,211,.25));
+  border-color: rgba(142,197,255,.6);
 }
 .btn.ghost{
   background: transparent;
 }
 .btn.soft{
-  background: linear-gradient(135deg, rgba(134,212,184,.26), rgba(144,188,244,.16));
-  border-color: rgba(134,212,184,.45);
+  background: linear-gradient(135deg, rgba(142,243,197,.30), rgba(142,197,255,.18));
+  border-color: rgba(142,243,197,.55);
 }
 .btn:focus-visible{
   outline: 3px solid rgba(109,157,244,.28);
