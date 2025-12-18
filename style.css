@@ -180,6 +180,22 @@ body{
   padding: 12px;
 }
 
+.endingLabel{
+  display:inline-block;
+  margin: 8px 0 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  background: linear-gradient(135deg, rgba(242,164,93,.9), rgba(247,162,153,.75));
+  color: #3d260f;
+  box-shadow: var(--shadow);
+}
+.endingLabel.mixed{ background: linear-gradient(135deg, rgba(247,162,153,.85), rgba(255,224,186,.85)); }
+.endingLabel.integrity{ background: linear-gradient(135deg, rgba(134,192,123,.85), rgba(242,164,93,.8)); }
+.endingLabel.despair{ background: linear-gradient(135deg, rgba(209,107,95,.9), rgba(247,162,153,.85)); }
+
 .sliderWrap{
   margin-top: 14px;
   border-radius: 14px;
