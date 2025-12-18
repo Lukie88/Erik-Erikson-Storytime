@@ -34,28 +34,6 @@ function applyDelta(d) {
   setStats();
 }
 
-function fmtDelta(val) {
-  if (val === 0 || val == null) return "0";
-  return val > 0 ? `+${val}` : `${val}`;
-}
-
-function renderBadges(delta) {
-  const items = [];
-  if (!delta) return "";
-  const map = [
-    ["Trust", delta.trust ?? 0],
-    ["Self Esteem", delta.self ?? 0],
-    ["Relationships", delta.rel ?? 0],
-  ];
-  for (const [name, v] of map) {
-    if (v === 0) continue;
-    items.push(
-      `<span class="badge"><span class="delta ${v > 0 ? "good" : "bad"}">${name} ${fmtDelta(v)}</span></span>`
-    );
-  }
-  return items.length ? `<div class="badges">${items.join("")}</div>` : "";
-}
-
 function escapeHtml(str) {
   return String(str)
     .replaceAll("&", "&amp;")
@@ -155,7 +133,7 @@ const script = {
         label: "Choice A: Patient Step-by-Step Training",
         outcome: "Baby Leo’s caregiver introduces potty training one step at a time. From teaching him to independently pull down his pants to sitting on the toilet, he gradually learns at his own pace. Instead of being pressured, Leo begins to feel confident and understands that his mistakes are part of learning.",
         delta: { self: 2, trust: 1 },
-        next: "s3_industry",
+        next: "s3_initiative",
       },
       {
         key: "B",
@@ -163,13 +141,51 @@ const script = {
         // safety tweak: keep meaning, avoid explicit violence wording
         outcome: "Baby Leo’s caregiver expects Leo to learn quickly. Every time he has accidents, he gets scolded and harshly punished. Instead of learning at his own pace, he is forced to “succeed” and often becomes frustrated. This results in anxiousness, and he doubts his own abilities.",
         delta: { trust: 0, self: -1 },
-        next: "s3_industry",
+        next: "s3_initiative",
       },
       {
         key: "C",
         label: "Choice C: Inconsistent/Unstructured Training",
         outcome: "Baby Leo is given no guidance on how to potty train; he becomes unsure of what’s expected of him. He is often confused and uncertain, delaying his independence.",
         delta: { trust: -1, self: -2 },
+        next: "s3_initiative",
+      },
+    ],
+  },
+
+  // Initiative vs Guilt
+  s3_initiative: {
+    stage: { num: 3, name: "Stage 3: Initiative vs Guilt" },
+    title: "Conflict 3:",
+    image: "images/stage3.jpg",
+    tint: "var(--gradient3)",
+    paragraphs: [
+      "Leo begins preschool now and is very inquisitive. His imagination begins to flourish, and he constantly asks questions many are unable to answer. You must now make the choice on whether Leo is comfortable expressing his ideas and creativity or whether he feels humiliated for wanting to do so.",
+      "At preschool, Leo openly engages in roleplaying different characters and scenarios. Although most of his actions are deemed acceptable, some practices worry about other students and caretakers. How do you encourage Leo to respond?",
+    ],
+    choices: [
+      {
+        key: "A",
+        label: "Choice A: Leo is encouraged to freely express his thoughts",
+        outcome:
+          "He is encouraged to exercise his imagination to the fullest capacity; he shares stories, and acts out scenes with other children without fear of judgement. He learns that expressing ideas is valuable and acceptable and is willing to take the initiative when communicating with others.",
+        delta: { self: 2, rel: 2 },
+        next: "s3_industry",
+      },
+      {
+        key: "B",
+        label: "Choice B: Leo is forced to suppress his creativity and act mature",
+        outcome:
+          "Caretakers, peers and teachers all judge his actions abnormal and bizarre. He becomes ashamed of his own imagination as many constantly tease and laugh at him for it. He suppresses his ideas and rejects his own thoughts as he associates them with guilt and embarrassment.",
+        delta: { self: -2, rel: -1 },
+        next: "s3_industry",
+      },
+      {
+        key: "C",
+        label: "Choice C: Leo expresses his imaginations but only in private",
+        outcome:
+          "Faced with constant laughter and shame, Leo worries that sharing his ideas with others would lead to humiliation. He stops sharing opinions with others, instead of opting for a more reserved approach by hiding his creativity from others. Leo is still creative, but limits his expression in social settings.",
+        delta: { self: -1 },
         next: "s3_industry",
       },
     ],
@@ -177,8 +193,8 @@ const script = {
 
   // Industry vs Inferiority (as written)
   s3_industry: {
-    stage: { num: 3, name: "Industry vs Inferiority" },
-    title: "Conflict 3:",
+    stage: { num: 4, name: "Stage 4: Industry vs Inferiority" },
+    title: "Conflict 4:",
     image: "images/stage3.jpg",
     tint: "var(--gradient3)",
     paragraphs: [
@@ -204,7 +220,7 @@ const script = {
 
   // Identity vs Role Confusion
   s4_identity: {
-    stage: { num: 4, name: "Identity vs Role Confusion" },
+    stage: { num: 5, name: "Stage 5: Identity vs Role Confusion" },
     title: "Conflict: How does Leo respond to his identity struggle?",
     image: "images/stage4.jpg",
     tint: "var(--gradient4)",
@@ -247,7 +263,7 @@ const script = {
 
   // Intimacy vs Isolation (slider)
   s5_intimacy: {
-    stage: { num: 5, name: "Intimacy vs Isolation" },
+    stage: { num: 6, name: "Stage 6: Intimacy vs Isolation" },
     title: "Conflict: Balancing work and close relationships",
     paragraphs: [
       "As a young adult, Leo enters the workforce and begins forming romantic relationships. He only has so many hours in the day—how should he balance work with nurturing close bonds? Move the slider to choose where he puts his energy."
@@ -256,7 +272,7 @@ const script = {
 
   // Generativity vs Stagnation
   s6_generativity: {
-    stage: { num: 6, name: "Generativity vs Stagnation" },
+    stage: { num: 7, name: "Stage 7: Generativity vs Stagnation" },
     title: "Conflict: Mid-life direction",
     paragraphs: [
       "By mid-life, Leo reflects on what he has built so far. Has he created meaning for himself and others, or has he become stuck? Prior identity choices influence whether a mid-life crisis will emerge."
@@ -265,7 +281,7 @@ const script = {
 
   // Integrity vs Despair
   s7_integrity: {
-    stage: { num: 7, name: "Integrity vs Despair" },
+    stage: { num: 8, name: "Stage 8: Integrity vs Despair" },
     title: "Final Stage: Later Life Reflection",
     paragraphs: [],
   },
@@ -294,8 +310,6 @@ function renderChoiceNode(node) {
       (ch) => `
         <button class="btn" data-key="${ch.key}">
           <div class="h2">${escapeHtml(ch.label)}</div>
-          <div class="p">${escapeHtml(ch.outcome)}</div>
-          ${renderBadges(ch.delta)}
         </button>`
     )
     .join("");
@@ -312,16 +326,15 @@ function renderChoiceNode(node) {
     btn.addEventListener("click", () => {
       const choice = node.choices[idx];
       if (typeof choice.onPick === "function") choice.onPick();
-      applyDelta(choice.delta);
       const outcomeHtml = `
         <div class="outcomeBox">
           <div class="h2">Outcome</div>
           <div class="p">${escapeHtml(choice.outcome)}</div>
-          ${renderBadges(choice.delta)}
         </div>
         <button class="btn primary" id="continueBtn" type="button">Continue</button>
       `;
       grid.innerHTML = outcomeHtml;
+      applyDelta(choice.delta);
       $("continueBtn").addEventListener("click", () => setStep(choice.next));
     });
   });
@@ -353,15 +366,14 @@ function renderIntimacySlider() {
         "Leo prioritizes relationships, investing in friends and a committed partner. He sometimes delays career milestones, but gains deep emotional support.";
       delta = { rel: 2, trust: 1, self: -1 };
     }
-    applyDelta(delta);
     ui.screen.innerHTML += `
       <div class="outcomeBox" style="margin-top:12px;">
         <div class="h2">Outcome</div>
         <div class="p">${escapeHtml(outcomeText)}</div>
-        ${renderBadges(delta)}
       </div>
       <button class="btn primary" id="continueAfterSlider" type="button" style="margin-top:12px;">Continue</button>
     `;
+    applyDelta(delta);
     $("sliderBtn").disabled = true;
     $("lifeSlider").disabled = true;
     $("continueAfterSlider").addEventListener("click", () => setStep("s6_generativity"));
@@ -376,7 +388,6 @@ function ensureGenerativityOutcome() {
   const crisis = Math.random() < chance;
   if (crisis) {
     const delta = { self: -3 };
-    applyDelta(delta);
     state.genOutcome = {
       crisis: true,
       delta,
@@ -385,7 +396,6 @@ function ensureGenerativityOutcome() {
     };
   } else {
     const delta = { trust: 1, self: 1, rel: 2 };
-    applyDelta(delta);
     state.genOutcome = {
       crisis: false,
       delta,
@@ -403,28 +413,39 @@ function renderGenerativity() {
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
     ${node.paragraphs.map((p) => `<p class="p">${escapeHtml(p)}</p>`).join("")}
-    <div class="outcomeBox">
-      <div class="h2">Outcome</div>
-      <div class="p">${escapeHtml(outcome.text)}</div>
-      ${renderBadges(outcome.delta)}
-    </div>
-    <button class="btn primary" id="toIntegrity" type="button" style="margin-top:12px;">Continue to later life</button>
+    <button class="btn primary" id="revealOutcome" type="button" style="margin-top:12px;">See Leo's reflection</button>
+    <div id="genOutcomeSpot"></div>
   `;
-  $("toIntegrity").addEventListener("click", () => setStep("s7_integrity"));
+  $("revealOutcome").addEventListener("click", () => {
+    const spot = $("genOutcomeSpot");
+    spot.innerHTML = `
+      <div class="outcomeBox" style="margin-top:12px;">
+        <div class="h2">Outcome</div>
+        <div class="p">${escapeHtml(outcome.text)}</div>
+      </div>
+      <button class="btn primary" id="toIntegrity" type="button" style="margin-top:12px;">Continue to later life</button>
+    `;
+    applyDelta(outcome.delta);
+    $("revealOutcome").disabled = true;
+    $("toIntegrity").addEventListener("click", () => setStep("s7_integrity"));
+  });
 }
 
 function renderEnding() {
   const node = script.s7_integrity;
   const total = state.trust + state.self + state.rel;
   let verdict = "mixed";
+  let verdictLabel = "Mixed Feelings";
   let text =
     "Leo looks back on his life with a blend of pride and regret. Some relationships feel strong while others drifted, and he recognizes both growth and missed chances.";
   if (total >= 6) {
     verdict = "integrity";
+    verdictLabel = "Integrity";
     text =
       "Leo feels a deep sense of fulfillment. He accepts his past choices, cherishes his relationships, and knows he has contributed meaningfully to those around him.";
   } else if (total <= -3) {
     verdict = "despair";
+    verdictLabel = "Despair";
     text =
       "Leo struggles with regret. He dwells on fractured relationships and lost opportunities, wishing he had trusted himself and others more.";
   }
@@ -432,9 +453,10 @@ function renderEnding() {
   ui.screen.innerHTML = `
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
+    <div class="endingLabel ${escapeHtml(verdict)}">${escapeHtml(verdictLabel)}</div>
     <p class="p">${escapeHtml(text)}</p>
     <div class="outcomeBox">
-      <div class="h2">Final scorecard (${escapeHtml(verdict)})</div>
+      <div class="h2">Final scorecard (${escapeHtml(verdictLabel)})</div>
       <div class="p">Trust: ${state.trust}, Self-Esteem: ${state.self}, Relationships: ${state.rel}</div>
     </div>
     <button class="btn ghost" id="playAgain" type="button" style="margin-top:12px;">Play again</button>
@@ -455,6 +477,9 @@ function renderStep() {
       break;
     case "s2_c2":
       renderChoiceNode(script.s2_c2);
+      break;
+    case "s3_initiative":
+      renderChoiceNode(script.s3_initiative);
       break;
     case "s3_industry":
       renderChoiceNode(script.s3_industry);
