@@ -95,7 +95,7 @@ const script = {
   s1_caregiver: {
     stage: { num: 1, name: "Stage 1: Trust vs Mistrust (Infancy)" },
     title: "Choice B- Hire a caregiver",
-    image: "images/stage1.jpg",
+        image: "images/stage1.png",
     tint: "var(--gradient1)",
     paragraphs: [
       "Baby Leo’s parents are so passionate about their jobs they feel it is more beneficial for his needs to be met by someone else most of the day. However, the quality of care he receives depends on who you are hired."
@@ -285,10 +285,24 @@ const script = {
     paragraphs: [],
   },
 };
+function renderSceneImage(node) {
+  if (!node.image) return "";
+  const tint = node.tint || "linear-gradient(135deg, rgba(242,164,93,.22), rgba(247,162,153,.18))";
+  const altSource = node.stage?.name || node.title || "Scene image";
+  const alt = `${altSource} illustration`;
+  return `
+    <figure class="sceneImage" style="--sceneTint:${escapeHtml(tint)};">
+      <img src="${escapeHtml(node.image)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async"
+        onerror="this.closest('.sceneImage')?.classList.add('is-hidden');" />
+    </figure>
+  `;
+}
 
 function renderIntro() {
   const intro = script.intro;
+    const imageHtml = renderSceneImage(intro);
   ui.screen.innerHTML = `
+      ${imageHtml}
     <div class="h1">${escapeHtml(intro.title)}</div>
     <div class="h2">${escapeHtml(intro.subtitle)}</div>
     ${intro.paragraphs
@@ -312,10 +326,11 @@ function renderChoiceNode(node) {
         </button>`
     )
     .join("");
-
+  const imageHtml = renderSceneImage(node);
   ui.screen.innerHTML = `
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
+        ${imageHtml}
     ${paragraphs}
     <div class="choiceGrid" id="choiceGrid">${choicesHtml}</div>
   `;

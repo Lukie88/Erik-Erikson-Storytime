@@ -12,7 +12,11 @@
   --warn:#f4b86a;
   --good:#86c07b;
   --bad:#d16b5f;
-
+--gradientIntro: linear-gradient(135deg, rgba(242,164,93,.4), rgba(247,162,153,.32));
+  --gradient1: linear-gradient(135deg, rgba(247,162,153,.32), rgba(242,164,93,.36));
+  --gradient2: linear-gradient(135deg, rgba(255,224,186,.4), rgba(242,164,93,.3));
+  --gradient3: linear-gradient(135deg, rgba(247,162,153,.24), rgba(255,224,186,.32));
+  --gradient4: linear-gradient(135deg, rgba(242,164,93,.3), rgba(247,162,153,.28));
   --shadow: 0 14px 40px rgba(186,136,77,.28);
   --radius: 18px;
   --radius2: 14px;
@@ -213,7 +217,31 @@ body{
 input[type="range"]{ width: 100%; }
 
 .muted{ color: var(--muted); }
-
+.sceneImage{
+  position: relative;
+  overflow:hidden;
+  border-radius: var(--radius2);
+  border: 1px solid rgba(133,84,29,.18);
+  background: linear-gradient(135deg, rgba(255,236,209,.86), rgba(255,223,186,.72));
+  margin: 8px 0 14px;
+}
+.sceneImage::after{
+  content: "";
+  position:absolute;
+  inset:0;
+  background: var(--sceneTint, linear-gradient(135deg, rgba(242,164,93,.24), rgba(247,162,153,.18)));
+  pointer-events:none;
+}
+.sceneImage img{
+  display:block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: inherit;
+}
+.sceneImage.is-hidden{
+  display:none;
+}
 @media (max-width: 960px){
   .card{ min-height: auto; }
   .stats{ justify-content:flex-start; }
