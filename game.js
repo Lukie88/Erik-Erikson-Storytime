@@ -47,13 +47,12 @@ function escapeHtml(str) {
 const script = {
   intro: {
     title: "Introduction",
-    subtitle: "Read, then begin.",
     image: "images/intro.png",
     tint: "var(--gradientIntro)",
     paragraphs: [
       "In this interactive game, you will be controlling the life of “Leo” and his journey from womb to tomb. Through a series of choices, you are free to make your own decisions on how you want him to lead his life. Built upon Freud’s psychosexual stages, Erikson’s eight psychological stages of development demonstrate how childhood influences, experiences and social dynamics influence our choices and shape individuals' personality, relationships and sense of meaning in life.",
-      "You will be able to make your own choices in controlling Baby Leo to Old Leo. There are 8 main life stages, each based on Erikson’s theory. In each stage, there is a conflict to face with 2-3 choices per conflict. The choices you pick affect three internal traits: trust, self-esteem, and relationships. The outcome of Leo’s life is dependent on cumulative choices, not a single decision.",
-      "Trust, self esteem and relationships all start at 0 when you get birthed."
+      "You will be able to make your own choices in controlling Baby Leo to Old Leo. There are 8 main life stages, each based on Erikson’s theory. In each stage, there is a conflict to face with 2-3 choices per conflict. The choices you pick affect three internal traits: trust, self-esteem, and relationships (which all start at 0). The outcome of Leo’s life is dependent on cumulative choices, not a single decision.",
+      "All images were found online",
     ],
     next: "s1_c1",
   },
@@ -65,7 +64,7 @@ const script = {
     image: "images/stage1.png",
     tint: "var(--gradient1)",
     paragraphs: [
-      "Baby Leo is born on June 19, 2025. His mother and father both have demanding jobs as bankers, which leaves them with little time at home. Rich in money but poor in time, they have little time to care for their child. They care for him, but they must decide how his day-to-day care will work during his first year. To combat that issue, the parents are considering three choices: the mother can retire and raise baby Leo, a caregiver is hired to raise the child, or the parents try to balance work and family."
+      "Baby Leo is born on June 19, 2025. His mother and father both have demanding jobs as bankers, which leaves them with little time at home. Rich in money but poor in time, they have little time to care for their child. They care for him, but they must decide how his day-to-day care will work during his first year. To combat that issue, the parents are considering three choices: the mother can retire and raise baby Leo, a caregiver can be hired to raise the child, or the parents try to have Leo raise himself while they are at work.",
     ],
     choices: [
       {
@@ -125,7 +124,7 @@ const script = {
     image: "images/stage2.png",
     tint: "var(--gradient2)",
     paragraphs: [
-      "How does baby Leo learn in this stage? Is he encouraged to try new things by himself or is he spoiled and constantly discouraged from independent actions? In this stage, how you help Leo bring out confidence or further the self doubt."
+      "How does baby Leo learn in this stage? Is he encouraged to try new things by himself or is he spoiled and constantly discouraged from independent actions? In this stage, how do you help Leo bring out confidence or further self doubt?"
     ],
     choices: [
       {
@@ -425,7 +424,7 @@ function ensureGenerativityOutcome() {
       crisis: true,
       delta,
       text:
-        "A mid-life crisis hits Leo hard. He experiences this because of a buildup of emotional turmoil and countless hours of self-reflection. He finally realizes that his previous actions no longer define him and now sets out to rediscover his confidence and true self.",
+        "A mid-life crisis hits Leo hard. He experiences this because of a buildup of emotional turmoil and countless hours of self-reflection. He finally realizes that his previous actions no longer define him and now tries to find his confidence and true self.",
     };
   } else {
     const delta = { trust: 1, self: 1, rel: 2 };
@@ -483,7 +482,7 @@ function renderEnding() {
     verdict = "despair";
     verdictLabel = "Despair";
     text =
-      "Looking back, Leo’s life was insignificant. His life was marked by poor relationships and few accomplishments. He often despairs over missed opportunities and his cowardness in not taking risks. He is disconnected with friends, family and society, living alone in isolation, where loneliness and regret overshadow any hope for rejuvenation. Without a sense of fulfillment, he tosses and turns each night, ultimately coming to the painful conviction that his life futile endeavor full of unrealized potential. ";
+      "Looking back, Leo’s life was insignificant. His life was marked by poor relationships and few accomplishments. He often despairs over missed opportunities and his cowardness in not taking risks. He is disconnected with friends, family and society, living alone in isolation, where loneliness and regret overshadow any hope for rejuvenation. Without a sense of fulfillment, he tosses and turns each night, ultimately coming to the painful conviction that his life was a futile endeavor full of unrealized potential. ";
   }
 
   ui.screen.innerHTML = `
@@ -493,7 +492,7 @@ function renderEnding() {
     <div class="endingLabel ${escapeHtml(verdict)}">${escapeHtml(verdictLabel)}</div>
     <p class="p">${escapeHtml(text)}</p>
     <div class="outcomeBox">
-      <div class="h2">Final scorecard (${escapeHtml(verdictLabel)})</div>
+      <div class="h2">Final score: (${escapeHtml(verdictLabel)})</div>
       <div class="p">Trust: ${state.trust}, Self-Esteem: ${state.self}, Relationships: ${state.rel}</div>
     </div>
     <button class="btn ghost" id="playAgain" type="button" style="margin-top:12px;">Play again</button>
