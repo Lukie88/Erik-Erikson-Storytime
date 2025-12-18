@@ -34,28 +34,6 @@ function applyDelta(d) {
   setStats();
 }
 
-function fmtDelta(val) {
-  if (val === 0 || val == null) return "0";
-  return val > 0 ? `+${val}` : `${val}`;
-}
-
-function renderBadges(delta) {
-  const items = [];
-  if (!delta) return "";
-  const map = [
-    ["Trust", delta.trust ?? 0],
-    ["Self Esteem", delta.self ?? 0],
-    ["Relationships", delta.rel ?? 0],
-  ];
-  for (const [name, v] of map) {
-    if (v === 0) continue;
-    items.push(
-      `<span class="badge"><span class="delta ${v > 0 ? "good" : "bad"}">${name} ${fmtDelta(v)}</span></span>`
-    );
-  }
-  return items.length ? `<div class="badges">${items.join("")}</div>` : "";
-}
-
 function escapeHtml(str) {
   return String(str)
     .replaceAll("&", "&amp;")
@@ -294,8 +272,6 @@ function renderChoiceNode(node) {
       (ch) => `
         <button class="btn" data-key="${ch.key}">
           <div class="h2">${escapeHtml(ch.label)}</div>
-          <div class="p">${escapeHtml(ch.outcome)}</div>
-          ${renderBadges(ch.delta)}
         </button>`
     )
     .join("");
@@ -312,16 +288,15 @@ function renderChoiceNode(node) {
     btn.addEventListener("click", () => {
       const choice = node.choices[idx];
       if (typeof choice.onPick === "function") choice.onPick();
-      applyDelta(choice.delta);
       const outcomeHtml = `
         <div class="outcomeBox">
           <div class="h2">Outcome</div>
           <div class="p">${escapeHtml(choice.outcome)}</div>
-          ${renderBadges(choice.delta)}
         </div>
         <button class="btn primary" id="continueBtn" type="button">Continue</button>
       `;
       grid.innerHTML = outcomeHtml;
+      applyDelta(choice.delta);
       $("continueBtn").addEventListener("click", () => setStep(choice.next));
     });
   });
@@ -353,15 +328,14 @@ function renderIntimacySlider() {
         "Leo prioritizes relationships, investing in friends and a committed partner. He sometimes delays career milestones, but gains deep emotional support.";
       delta = { rel: 2, trust: 1, self: -1 };
     }
-    applyDelta(delta);
     ui.screen.innerHTML += `
       <div class="outcomeBox" style="margin-top:12px;">
         <div class="h2">Outcome</div>
         <div class="p">${escapeHtml(outcomeText)}</div>
-        ${renderBadges(delta)}
       </div>
       <button class="btn primary" id="continueAfterSlider" type="button" style="margin-top:12px;">Continue</button>
     `;
+    applyDelta(delta);
     $("sliderBtn").disabled = true;
     $("lifeSlider").disabled = true;
     $("continueAfterSlider").addEventListener("click", () => setStep("s6_generativity"));
@@ -376,7 +350,6 @@ function ensureGenerativityOutcome() {
   const crisis = Math.random() < chance;
   if (crisis) {
     const delta = { self: -3 };
-    applyDelta(delta);
     state.genOutcome = {
       crisis: true,
       delta,
@@ -385,7 +358,6 @@ function ensureGenerativityOutcome() {
     };
   } else {
     const delta = { trust: 1, self: 1, rel: 2 };
-    applyDelta(delta);
     state.genOutcome = {
       crisis: false,
       delta,
@@ -403,14 +375,22 @@ function renderGenerativity() {
     <div class="h1">${escapeHtml(node.stage.name)}</div>
     <div class="h2">${escapeHtml(node.title)}</div>
     ${node.paragraphs.map((p) => `<p class="p">${escapeHtml(p)}</p>`).join("")}
-    <div class="outcomeBox">
-      <div class="h2">Outcome</div>
-      <div class="p">${escapeHtml(outcome.text)}</div>
-      ${renderBadges(outcome.delta)}
-    </div>
-    <button class="btn primary" id="toIntegrity" type="button" style="margin-top:12px;">Continue to later life</button>
+    <button class="btn primary" id="revealOutcome" type="button" style="margin-top:12px;">See Leo's reflection</button>
+    <div id="genOutcomeSpot"></div>
   `;
-  $("toIntegrity").addEventListener("click", () => setStep("s7_integrity"));
+  $("revealOutcome").addEventListener("click", () => {
+    const spot = $("genOutcomeSpot");
+    spot.innerHTML = `
+      <div class="outcomeBox" style="margin-top:12px;">
+        <div class="h2">Outcome</div>
+        <div class="p">${escapeHtml(outcome.text)}</div>
+      </div>
+      <button class="btn primary" id="toIntegrity" type="button" style="margin-top:12px;">Continue to later life</button>
+    `;
+    applyDelta(outcome.delta);
+    $("revealOutcome").disabled = true;
+    $("toIntegrity").addEventListener("click", () => setStep("s7_integrity"));
+  });
 }
 
 function renderEnding() {
