@@ -37,8 +37,8 @@ body{
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(900px 500px at 25% 10%, rgba(122,162,255,.12), transparent 60%),
-    radial-gradient(700px 420px at 85% 15%, rgba(125,255,178,.08), transparent 55%);
+    radial-gradient(900px 520px at 22% 12%, rgba(109,157,244,.12), transparent 60%),
+    radial-gradient(760px 460px at 88% 18%, rgba(134,212,184,.10), transparent 55%);
   filter: blur(0px);
 }
 
@@ -70,18 +70,14 @@ body{
   place-items:center;
   font-weight: 900;
   letter-spacing: .6px;
-  border: 1px solid rgba(122,162,255,.35);
-  background: linear-gradient(135deg, rgba(122,162,255,.35), rgba(125,255,178,.16));
+  border: 1px solid rgba(109,157,244,.28);
+  background: linear-gradient(135deg, rgba(109,157,244,.22), rgba(134,212,184,.16));
+  color: #0d1a2f;
   box-shadow: var(--shadow);
 }
 .brandText .title{
   font-weight: 850;
   font-size: 18px;
-}
-.brandText .subtitle{
-  font-size: 12.5px;
-  color: var(--muted);
-  margin-top: 2px;
 }
 
 .stats{
@@ -129,8 +125,12 @@ body{
   margin: 0 0 12px;
 }
 .p{
-  line-height: 1.62;
-  margin: 10px 0;
+  line-height: 1.72;
+  margin: 12px 0;
+  max-width: 78ch;
+}
+.p + .p{
+  margin-top: 6px;
 }
 .hr{
   border: 0;
@@ -154,7 +154,7 @@ body{
   transition: transform .06s ease, background .15s ease, border-color .15s ease;
   text-align:left;
 }
-.btn:hover{ background: rgba(38,53,89,.80); }
+.btn:hover{ background: rgba(255,255,255,.9); border-color: rgba(17,37,64,.18); }
 .btn:active{ transform: translateY(1px); }
 .btn.primary{
   background: linear-gradient(135deg, rgba(142,197,255,.45), rgba(255,155,211,.25));
@@ -168,7 +168,7 @@ body{
   border-color: rgba(142,243,197,.55);
 }
 .btn:focus-visible{
-  outline: 3px solid rgba(122,162,255,.35);
+  outline: 3px solid rgba(109,157,244,.28);
   outline-offset: 2px;
 }
 
@@ -176,7 +176,7 @@ body{
   margin-top: 14px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  background: rgba(10,14,26,.55);
+  background: rgba(109,157,244,.08);
   padding: 12px;
 }
 
@@ -184,7 +184,7 @@ body{
   margin-top: 14px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  background: rgba(10,14,26,.55);
+  background: rgba(109,157,244,.08);
   padding: 12px;
 }
 .sliderLabels{
