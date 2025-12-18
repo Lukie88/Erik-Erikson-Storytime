@@ -51,8 +51,8 @@ const script = {
     image: "images/intro.jpg",
     tint: "var(--gradientIntro)",
     paragraphs: [
-      "In this interactive game, you will be <b>controlling</b> the life of “Leo” and his journey from womb to tomb. Through a series of choices, you are free to make your own decisions on how you want him to lead his life. Built upon Freud’s psychosexual stages, Erikson’s eight psychological stages of development demonstrate how childhood influences, experiences and social dynamics influence our choices and shape individuals' personality, relationships and sense of meaning in life.",
-      "You will be able to make your own choices in controlling Baby Leo to Old Leo. There are 8 main life stages, each based on Erikson’s theory. In each stage, there is a conflict to face with 2-3 choices per conflict. The choices you pick affect three internal traits: <b> trust, self-esteem, and relationships.</b> The outcome of Leo’s life is dependent on cumulative choices, not a single decision.",
+      "In this interactive game, you will be controlling the life of “Leo” and his journey from womb to tomb. Through a series of choices, you are free to make your own decisions on how you want him to lead his life. Built upon Freud’s psychosexual stages, Erikson’s eight psychological stages of development demonstrate how childhood influences, experiences and social dynamics influence our choices and shape individuals' personality, relationships and sense of meaning in life.",
+      "You will be able to make your own choices in controlling Baby Leo to Old Leo. There are 8 main life stages, each based on Erikson’s theory. In each stage, there is a conflict to face with 2-3 choices per conflict. The choices you pick affect three internal traits: trust, self-esteem, and relationships. The outcome of Leo’s life is dependent on cumulative choices, not a single decision.",
       "Trust, self esteem and relationships all start at 0 when you get birthed."
     ],
     next: "s1_c1",
@@ -71,7 +71,7 @@ const script = {
       {
         key: "A",
         label: "Choice A- Mother retires and cares for Leo",
-        outcome: "Although passionate about her job, Leo’s mother makes the ultimate decision and decides to step down from her tiring job. She ensures that Leo receives consistent attention and comfort. Her <b>constant and responsive care </b>makes Baby Leo feel safe and secure.",
+        outcome: "Although passionate about her job, Leo’s mother makes the ultimate decision and decides to step down from her tiring job. She ensures that Leo receives consistent attention and comfort. Her constant and responsive care makes Baby Leo feel safe and secure.",
         delta: { trust: 2, rel: 1 },
         next: "s2_c2",
       },
@@ -363,7 +363,7 @@ $("sliderBtn").addEventListener("click", () => {
   } else if (val < 70) {
     // Choice C: Work-Life Balance
     outcomeText =
-      "Leo divides his time evenly between career and relationships. He works an 8-hour day, dedicating effort to his career; the other 16 hours are for friends and family. He advances the corporate ladder at a moderate pace, but balances bonds without sacrificing ambition.";
+      "Leo divides his time evenly between career and relationships. He works an 8-hour day, dedicating effort to his career; the other 16 hours are for friends and family. He advances the corporate ladder at a moderate pace, but balances personal bonds without sacrificing ambition.";
     delta = { self: 1, rel: 1 };
   } else {
     outcomeText =
